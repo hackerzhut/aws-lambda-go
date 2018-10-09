@@ -1,0 +1,24 @@
+version: '3'
+services:
+  sam-local:
+    build: .
+    command: ./scripts/run-sam.sh
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/var/opt/
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - go
+    environment:
+      - VOLUME=$PWD
+    env_file:
+      - .env
+
+  go:
+    command: ./scripts/build.sh
+    build:
+      context: ./
+      dockerfile: ./go.build.Dockerfile
+    volumes:
+      - .:/go/src/app/

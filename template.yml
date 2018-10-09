@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  ProjectName:
+    Type: String
+  Env:
+    Type: String
+    AllowedValues:
+      - dev
+      - prod
+    Default: dev
+
+Resources:
+  Vehicle:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Join [ "-", [ !Ref ProjectName, !Ref Env, GetVehicleFn ] ]
+      AutoPublishAlias: !Ref Stage
+      Handler: dist/vehicle
+      Runtime: go1.x
+      Tracing: Active
+      Environment:
+        Variables:
+          Env: !Ref Env
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /vehicle
+            Method: get

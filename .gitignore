@@ -1,0 +1,38 @@
+dist
+package.yml
+endpoint.txt
+bin
+vendor
+*.json
+
+# IDE
+.idea/
+
+# Go Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Runtime files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# OS X files
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
